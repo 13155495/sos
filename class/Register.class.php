@@ -50,6 +50,7 @@
         }
       
       
+      
       //资源关闭
       mysql_free_result($res);
       //关闭连接
@@ -68,7 +69,7 @@
  		public function addRegister($tel,$email,$pwd,$country,$name){
       $create_time = date('Y-m-d H:i:s',time());
  			$sql = "INSERT INTO user (name,email,tel,pwd,country,create_time) VALUES ('".$name."','".$email."','".$tel."','".$pwd."','".$country."','".$create_time."')";
-     
+
  			$sqlHelper = new SqlHelper();
  			$num = $sqlHelper->execute_dml($sql);
  			if($num == 1){
