@@ -33,9 +33,20 @@
    	}
    		
    		
-   		     //最新标签
-   	public function getUserInfo($tel){
-   	      $sql = "select name,email,tel,pwd,country,create_time from user where tel='$tel'";  
+   	/**
+   	 * [getUserInfo 获取用户信息]
+   	 * @param  [type] $tel [description]
+   	 * @return [type]      [description]
+   	 */
+   	public function getUserInfo($tel,$email){
+   		if(empty($email))
+   		{
+   			 $sql = "select name,email,tel,country from user where tel='$tel'"; 
+   		}
+   	     if(empty($tel))
+   		{
+   			 $sql = "select name,email,tel,country from user where email='$email'"; 
+   		}
    	      //$sql = "select * from label";
    	      // print $sql;
    	      

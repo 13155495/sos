@@ -41,7 +41,20 @@
 		}
 		else
 		{
-				die(JSON(array ('res'=>1,'data'=>'sucess')));  	 	
+				$row = $login->getUserInfo($tel,$email);
+				if (empty($row))
+				{
+					die( JSON(array ('res'=>0,'data'=>'user info is null')) );   
+				}
+				else
+				{
+					//var_dump($row);return;
+					
+					
+					die(JSON(array ('res'=>1,'data'=>$row)));  
+					
+				}
+					 	
 		}
 		
 	
