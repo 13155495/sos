@@ -1,4 +1,4 @@
-<?php
+f<?php
 		
    
    require "config/config.php";
@@ -80,7 +80,7 @@
 
             //检测verify_code表中是否已经存在记录,存在就判断时间是否过期,没有过期就查表返回验证码
             //过期就更新,不存在记录就插入，保证唯一性
-            $sql = "SELECT code,user_id,email,deadline FROM veriry_code WHERE user_id ='$user_id'";;
+            $sql = "SELECT code,user_id,email,deadline FROM verify_code WHERE user_id ='$user_id'";;
             //创建一个SqlHelper对象
             $sqlHelper = new SqlHelper();
             $arr = $sqlHelper->execute_dql($sql);
@@ -103,7 +103,7 @@
                     
                     $verify_code = getRandNameStr(6);//生成验证码
                     //更新记录,验证码更新
-                    $sql = "UPDATE veriry_code SET code='$verify_code',deadline='$new_deadline' WHERE user_id='$user_id'";
+                    $sql = "UPDATE verify_code SET code='$verify_code',deadline='$new_deadline' WHERE user_id='$user_id'";
                     //echo $sql;
                     $sqlHelper = new SqlHelper();
                     $res = $sqlHelper->execute_dml($sql);
@@ -122,7 +122,7 @@
             $deadline       = date('Y-m-d H:i:s',time() + 60*VERIFY_CODE_EXPIRE_TIME);//1800秒,半小时
             
             //echo $create_time."|".$deadline;die();
-            $sql = "INSERT INTO veriry_code (code,user_id,email,deadline) VALUES ('".$code."','".$user_id."','".$email."','".$deadline."')";
+            $sql = "INSERT INTO verify_code (code,user_id,email,deadline) VALUES ('".$code."','".$user_id."','".$email."','".$deadline."')";
 
             $sqlHelper = new SqlHelper();
             $sqlHelper->execute_dml($sql);
