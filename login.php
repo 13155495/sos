@@ -49,10 +49,10 @@
 				else
 				{
 					//var_dump($row);return;
-					
-					
-					die(JSON(array ('res'=>1,'data'=>$row)));  
-					
+					//对象方式JSON
+					die(JSON(array ('res'=>1,'data'=>$row[0])));
+					//数组方式JSON
+					//die(JSON(array ('res'=>1,'data'=>$row))); 
 				}
 					 	
 		}

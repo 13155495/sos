@@ -11,24 +11,18 @@
      */
    	public function checkTel($tel){
      
-   		$sql = "select tel,pwd from user where tel ='$tel'";;
+   		$sql = "SELECT tel,pwd FROM user WHERE tel ='$tel'";;
    		//创建一个SqlHelper对象
    		$sqlHelper = new SqlHelper();
-   		$res = $sqlHelper->execute_dql_a($sql);
-     	if($row=mysql_fetch_assoc($res)){
-   			
-   				return 1;
-     	}
-   		else{
-   				return 0;
-   			}
-   		
-   		
-   		//资源关闭
-   		mysql_free_result($res);
-   		//关闭连接
-   		$sqlHelper->close_connect();
-   		return false;
+   		$arr = $sqlHelper->execute_dql($sql);
+      if(!empty($arr))
+      {
+        return 1;
+      }
+      else{
+        return 0;
+      }
+     	
    	}
    	/**
      * [邮箱检测]
@@ -37,25 +31,20 @@
      */
     public function checkEmail($email){
      
-      $sql = "select email,pwd from user where email ='$email'";;
+      $sql = "SELECT email,pwd FROM user WHERE email ='$email'";;
       //创建一个SqlHelper对象
       $sqlHelper = new SqlHelper();
-      $res = $sqlHelper->execute_dql_a($sql);
-      if($row=mysql_fetch_assoc($res)){
-        
-          return 1;
+      $arr = $sqlHelper->execute_dql($sql);
+
+      if(!empty($arr))
+      {
+        return 1;
       }
-      else{
-          return 0;
-        }
+      else
+      {
+        return 0;
+      }
       
-      
-      
-      //资源关闭
-      mysql_free_result($res);
-      //关闭连接
-      $sqlHelper->close_connect();
-      return false;
     }
 
  		/**
@@ -71,9 +60,9 @@
  			$sql = "INSERT INTO user (name,email,tel,pwd,country,create_time) VALUES ('".$name."','".$email."','".$tel."','".$pwd."','".$country."','".$create_time."')";
 
  			$sqlHelper = new SqlHelper();
- 			$num = $sqlHelper->execute_dml($sql);
- 			if($num == 1){
- 				return 1;
+ 			$res = $sqlHelper->execute_dml($sql);
+ 			if($res == 1){
+ 				return true;
  			}else{
  				return false;
  			}

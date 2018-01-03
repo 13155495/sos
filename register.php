@@ -14,7 +14,7 @@
    	//用户名密码为空的验证
 	if ($tel == ''  )
 	{
-		$arr = array('res' =>0, 'data' => 'tel is null ');
+		$arr = array('res' =>0, 'data' => 'tel is null');
 		die( JSON($arr));
 	}
 	if ($email == ''  )
@@ -45,7 +45,7 @@
 	
 	//注册新用户		
 	$res = $register->addRegister($tel,$email,$pwd,$country,$name);
-    if($res==1)
+    if($res)
     {
         //合法
         die(JSON(array ('res'=>1,'data'=>'sucess')));

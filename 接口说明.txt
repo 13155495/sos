@@ -10,7 +10,8 @@ pwd-密码(md5小写)
 	   
 	   用户名或者密码错误-{"res":0,"email or pwd is null"}
 	   					 -{"res":0,"tel or pwd is null"}
-	   登陆成功-{"res":"1","data":[{"name":"test","email":"test@163.com","tel":"13023444444","country":"zh"}]}
+	   成功：
+	   {"res":"1","data":{"id":"1","name":"test","email":"tttt@163.com","tel":"13023444444","country":"zh"}}
 
 http://lezhongyou.net/sos/login.php?tel=13023444444&pwd=e10adc3949ba59abbe56e057f20f883e
 or
@@ -33,6 +34,42 @@ pwd-密码(md5小写)
 http://lezhongyou.net/sos/register.php?name=12345&tel=13023444444&email=13023444444&country=zh&pwd=e10adc3949ba59abbe56e057f20f883e
 
 3.忘记密码
-http://lezhongyou.net/sos/forget.php?email=13023444444&pwd=e10adc3949ba59abbe56e057f20f883e
+email方式获取验证码
+手机验证码客户端实现验证,客户端验证成功后调用修改密码接口修改
+http://lezhongyou.net/sos/forget.php?email=test@163.com
+成功返回验证码给客户端
+30分钟内调用该接口获取的验证码是同一个,超过30分钟会是新的验证码
+
+{"res":"1","data":{"verify_code":"ucobuj"}}
+失败
+{"res":0,"data":"email format is error"}
+{"res":0,"data":"send mail fail"}
+
+4.修改密码
+提供tel 和 邮箱方式修改
+http://lezhongyou.net/sos/modifypwd.php?tel=13023444444&newpwd=e10adc3949ba59abbe56e057f20f883e
+or
+http://lezhongyou.net/sos/modifypwd.php?email=test@163.com&newpwd=e10adc3949ba59abbe56e057f20f883e
+返回值
+成功:	
+{"res":"1","data":"sucess"}
+失败: 	
+{"res":"0","data":"user is not exists"}
+{"res":"0","data":"modify pwd fail"}
+{"res":"0","data":"email or newpwd is null"}
+{"res":"0","data":"tel or newpwd is null"}
+
+5.修改用户信息
+id为登陆时返回的信息
+http://lezhongyou.net/sos/modifyuser.php?name=test&email=tttt@163.com&tel=111111111&id=1
+返回值
+成功:
+{"res":"1","data":"sucess"}
+失败:
+{"res":"0","data":"user is not exists"}
+{"res":"0","data":"required parameter missing"}
+{"res":"0","data":"modify user fail"}
+
+
 
 

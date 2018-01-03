@@ -22,24 +22,26 @@
       		mysql_select_db($this->dbname);
       		mysql_query("SET NAMES utf8");
       	}
+
+      	public function __destruct() {
+                  //print "析构数据库". "\n";
+                  //$this->close_connect();
+            }
       	
       	
-      	//执行dql语句
-      	public function execute_dql_a($sql){
-      	     $res=mysql_query($sql,$this->conn) or die(mysql_error());
-      	      return $res;
-      	}
-      
       	 
       	
       	//执行dql语句，返回的是数组
       	public function execute_dql($sql){
       		$arr=array();
+                  
       		$res=mysql_query($sql,$this->conn) or die(mysql_error());
-      		//吧res的数据集导入到数组里面去	
+
+      		//把res的数据集导入到数组里面去	
       		while($row=mysql_fetch_assoc($res)){
-      		      			$arr[]=$row;
+      		    $arr[]=$row;
       		}
+                  
       		mysql_free_result($res);
       		return $arr;
       	}
@@ -49,7 +51,7 @@
       	//执行dml语句
       	public function execute_dml($sql){
       		
-      		$dml_sql = mysql_query($sql,$this->conn);
+      	    $dml_sql = mysql_query($sql,$this->conn);
       	    if(!$dml_sql){
       	    	return 0;
       	    }else{
