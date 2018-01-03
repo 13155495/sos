@@ -5,6 +5,7 @@
     //header("content-type:text/html;charset=utf-8");
     //strtoupper
     $email 	= getgpc('email', 'G');
+    
     //邮件地址格式检测
     if(!isEmail($email))
     {

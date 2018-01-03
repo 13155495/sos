@@ -1,4 +1,4 @@
-f<?php
+<?php
 		
    
    require "config/config.php";
@@ -80,7 +80,7 @@ f<?php
 
             //检测verify_code表中是否已经存在记录,存在就判断时间是否过期,没有过期就查表返回验证码
             //过期就更新,不存在记录就插入，保证唯一性
-            $sql = "SELECT code,user_id,email,deadline FROM verify_code WHERE user_id ='$user_id'";;
+            $sql = "SELECT code,user_id,email,deadline FROM verify_code WHERE user_id ='$user_id'";
             //创建一个SqlHelper对象
             $sqlHelper = new SqlHelper();
             $arr = $sqlHelper->execute_dql($sql);
