@@ -1,0 +1,10 @@
+#过滤
+*.html
+.tags
+.tags_sorted_by_file
+*.log
+
+#过滤文件夹
+upload/  
+log/ 
+ 

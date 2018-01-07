@@ -32,6 +32,10 @@
 	/////////////////////////////设置服务器时区//////////////////////////////////////
 	define("VERIFY_CODE_EXPIRE_TIME"		,		30);//单位为分
 	date_default_timezone_set("Asia/Shanghai");
+	/////////////////////////////上传图片相关////////////////////////////////////////
+	define("UPLOAD_PATH"		,		'upload/avatar/');		 	//图片上传目录
+	define("UPLOAD_URI"			,		'http://lezhongyou.net/sos/');	//图片上传uri
+	define("UPLOAD_SIZE"		,		2*1024*1024);				//2M大小图片限制
 	/////////////////////////////设置HTTP头//////////////////////////////////////////
 	//header('Content-type: application/json; charset=utf-8');
 	header("content-type:text/html;charset=utf-8");

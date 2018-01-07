@@ -39,11 +39,11 @@
    	public function getUserInfo($tel,$email){
    		if(empty($email))
    		{
-   			 $sql = "SELECT id,name,email,tel,country FROM user WHERE tel='$tel'"; 
+   			 $sql = "SELECT id,name,email,tel,country,avatar FROM user WHERE tel='$tel'"; 
    		}
    	     if(empty($tel))
    		{
-   			 $sql = "SELECT id,name,email,tel,country FROM user WHERE email='$email'"; 
+   			 $sql = "SELECT id,name,email,tel,country,avatar FROM user WHERE email='$email'"; 
    		}
    	      //$sql = "select * from label";
    	      // print $sql;
