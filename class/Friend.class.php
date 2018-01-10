@@ -73,28 +73,22 @@
        */
    	public function getFriendInfo($email,$status){
          //var_dump($status);
-   		if(empty($status))
-         {
-   			$sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email'";  
-   		}
-   	   else
-         { 
-            $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
-         }
+   	
+         $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
    	   //echo $sql;return;
    		
-   	      //$sql = "select * from label";
-   	      // print $sql;
-   	      
-   	      $sqlHelper = new SqlHelper();
-   	      $arr = $sqlHelper->execute_dql($sql);
-            //资源关闭
-            mysql_free_result($arr);
-            //关闭连接
-            $sqlHelper->close_connect();
-   	      return $arr;
+	      //$sql = "select * from label";
+	      // print $sql;
+	      
+	      $sqlHelper = new SqlHelper();
+	      $arr = $sqlHelper->execute_dql($sql);
+         //资源关闭
+         mysql_free_result($arr);
+         //关闭连接
+         $sqlHelper->close_connect();
+	      return $arr;
 
-   	    }
+   	}
 
       /**
        * [getUserInfo 获取用户信息]

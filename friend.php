@@ -12,7 +12,7 @@
 		 $status 	= getgpc('status', 'G');
 		 $email 	= getgpc('email', 'G');
    		//用户名密码为空的验证
-		if ($email == ''  )
+		if ($email == ''  || $status == '')
 		{
 		
    				die( JSON(array('res' =>0, 'data' => 'required parameter missing')));	
