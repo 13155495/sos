@@ -1,4 +1,3 @@
-
 <?php
 
 	
@@ -12,7 +11,7 @@
 	define("CLASS_PATH"			,		dirname(BASE_PATH) . "/class");		//	业务类目录
 	define("PUBLIC_PATH"		,		dirname(BASE_PATH) . "/public");		//	PUBLIC配置文件路径
 	define("CONF_PATH"			,		dirname(BASE_PATH) . "/config");		//	配置目录
-	
+	define("LOG_PATH"			,		dirname(BASE_PATH) . "/log");			//	log目录
 	/////////////////////////////引入各种工具/////////////////////////////////////////
 	
 	require PUBLIC_PATH 		.'/function.php';				//	引入函数工具
@@ -33,9 +32,15 @@
 	define("VERIFY_CODE_EXPIRE_TIME"		,		30);//单位为分
 	date_default_timezone_set("Asia/Shanghai");
 	/////////////////////////////上传图片相关////////////////////////////////////////
-	define("UPLOAD_PATH"		,		'upload/avatar/');		 	//图片上传目录
-	define("UPLOAD_URI"			,		'http://lezhongyou.net/sos/');	//图片上传uri
+	define("UPLOAD_PATH"		,		    'upload/avatar/');		 	//图片上传目录
+	define("UPLOAD_DOMAIN"			,		'http://lezhongyou.net/sos/');	//图片上传uri
 	define("UPLOAD_SIZE"		,		2*1024*1024);				//2M大小图片限制
+	///////////////////////////////各种业务日志开关标识////////////////////////////////////////
+	define('LOG_SDK_LEVEL'		,			KLoggerUtil::DEBUG);	//	sdk日志等级
+	define('LOG_API_LEVEL'		,			KLoggerUtil::DEBUG);	//	API日志等级
+	define('LOG_SERVICE_LEVEL'	,			KLoggerUtil::DEBUG);	//	service日志等级
+	define('LOG_DB_LEVEL'		,			KLoggerUtil::OFF);	//	db日志等级
+	define('LOG_PAYBACK_API_LEVEL',			KLoggerUtil::DEBUG);	//	payBackApi日志等级
 	/////////////////////////////设置HTTP头//////////////////////////////////////////
 	//header('Content-type: application/json; charset=utf-8');
 	header("content-type:text/html;charset=utf-8");

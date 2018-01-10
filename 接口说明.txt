@@ -1,4 +1,5 @@
 
+https://github.com/13155495/sos.git 
 1.登陆
 说明:	支持电话号码和email登陆
 tel-电话号码
@@ -11,7 +12,7 @@ pwd-密码(md5小写)
 	   用户名或者密码错误-{"res":0,"email or pwd is null"}
 	   					 -{"res":0,"tel or pwd is null"}
 	   成功：
-	   {"res":"1","data":{"id":"1","name":"test","email":"13155495@qq.com","tel":"13023444444","country":"zh","avatar":"http://127.0.0.1/sos/upload/avatar/180107/1.jpg"}}
+	   {"res":"1","data":{"id":"1","name":"test","email":"13155495@qq.com","tel":"13023444444","country":"zh","avatar":"sos/upload/avatar/180107/1.jpg"}}
 
 http://lezhongyou.net/sos/login.php?tel=13023444444&pwd=e10adc3949ba59abbe56e057f20f883e
 or
@@ -71,7 +72,7 @@ http://lezhongyou.net/sos/modifyuser.php?name=test&email=tttt@163.com&tel=111111
 {"res":"0","data":"modify user fail"}
 
 6.修改用户头像
-http://lezhongyou.net/sos/modifyavatar.php?id=1&avatar=http://127.0.0.1/sos/upload/avatar/180107/1.jpg
+http://lezhongyou.net/sos/modifyavatar.php?id=1&avatar=sos/upload/avatar/180107/1.jpg
 返回值
 成功
 {"res":"1","data":"sucess"}
@@ -82,11 +83,77 @@ http://lezhongyou.net/sos/modifyavatar.php?id=1&avatar=http://127.0.0.1/sos/uplo
 
 7.上传图片接口
 http://lezhongyou.net/sos/upload.php
-支持类型
-gif jpeg png
-2M大小限制
+支持类型:gif jpeg png
+10M大小限制
 上传文件名相同自动覆盖
 POST方式上传
+返回值
+成功:
+{"res":"1","data":"sos/upload/avatar/180107/1.jpg","message":"sucess"}
+失败:
+{"res":"0","data":"","message":"invalid file"}
+{"res":"0","data":"","message":"create dir fail"}
+
+
+
+8.获取好友列表
+参数
+email:	用户的邮箱地址
+status:	好友状态(1:好友 2:发起邀请 3:受到邀请 4.拒绝 5.被拒绝)
+
+查询全部状态的好友信息
+http://lezhongyou.net/sos/friend.php?email=1@163.com
+
+根据状态查询好友信息
+http://lezhongyou.net/sos/friend.php?email=1@163.com&status=1
+
+
+返回值:
+成功
+{"res":"1","data":[]}
+{"res":"1","data":[{"friend_id":"2","friend_name":"12345","friend_email":"1@163.com","friend_tel":"13023444442","friend_avatar":"upload/avatar/180107/1.jpg"}]}
+"data":[] 表示没有好友
+
+失败：
+{"res":"0","data":"required parameter missing email"}
+{"res":"0","data":"user is not exists"}
+
+
+
+
+9.添加好友
+http://lezhongyou.net/sos/friendadd.php?email=13155495@qq.com&friend_email=1@163.com
+email        -自己的邮件地址
+friend_email -添加好友的邮件地址
+
+返回值：
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"friend info is not exists"}
+
+
+10.同意好友邀请
+email       -自己的邮件地址
+friend_email-邀请自己为好友的邮件地址
+下面的URL例子为:1@163.com接受13155495@qq.com发出的邀请
+http://lezhongyou.net/sos/friendagree.php?email=1@163.com&friend_email=13155495@qq.com
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"fail"}
+
+11.拒绝好友邀请
+email       -自己的邮件地址
+friend_email-邀请自己为好友的邮件地址
+下面的URL例子为:1@163.com拒绝13155495@qq.com发出的邀请
+http://lezhongyou.net/sos/friendreject.php?email=1@163.com&friend_email=13155495@qq.com
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"fail"}
 
 
 

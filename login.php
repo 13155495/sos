@@ -50,6 +50,7 @@
 				{
 					//var_dump($row);return;
 					//对象方式JSON
+					//$row[0][avatar] = UPLOAD_DOMAIN	.$row[0][avatar];
 					die(JSON(array ('res'=>1,'data'=>$row[0])));
 					//数组方式JSON
 					//die(JSON(array ('res'=>1,'data'=>$row))); 

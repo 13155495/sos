@@ -30,10 +30,16 @@
    		
    		
    	
-   	public function modify($tel,$email,$name){
+   	public function modify($tel,$email,$newpwd){
 
-   		
-         $sql = "UPDATE user SET name='$name' WHERE tel='$tel' AND email='$email'";
+   		if(empty($email))
+         {
+            $sql = "UPDATE user SET pwd='$newpwd' WHERE tel='$tel'";
+         }
+         if(empty($tel))
+         {
+            $sql = "UPDATE user SET pwd='$newpwd' WHERE email='$email'";
+         }
    		
          $sqlHelper = new SqlHelper();
          $res = $sqlHelper->execute_dml($sql);

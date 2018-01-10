@@ -50,8 +50,10 @@
       	
       	//执行dml语句
       	public function execute_dml($sql){
-      		
+      	
+
       	    $dml_sql = mysql_query($sql,$this->conn);
+                
       	    if(!$dml_sql){
       	    	return 0;
       	    }else{
