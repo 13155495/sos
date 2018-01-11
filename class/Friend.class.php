@@ -73,8 +73,15 @@
        */
    	public function getFriendInfo($email,$status){
          //var_dump($status);
-   	
-         $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
+   	   if(empty($status))
+         {
+            $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status=1";
+         }
+         else
+         {
+             $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
+         }
+        
    	   //echo $sql;return;
    		
 	      //$sql = "select * from label";
