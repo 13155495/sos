@@ -59,7 +59,7 @@
       { 
           //echo "123";return;
           //SELECT friend.user_id,user.reg_id,friend.friend_id FROM USER ,friend WHERE    friend.user_id = '$from_id' AND friend.friend_id=user.id AND friend.status=1 
-          $sql = "SELECT user.reg_id FROM USER ,friend WHERE    friend.user_id = '$from_id' AND friend.friend_id=user.id AND friend.status=1";
+          $sql = "SELECT user.reg_id FROM user,friend WHERE friend.user_id = '$from_id' AND friend.friend_id=user.id AND friend.status=1";
           $array_id = array();
           //创建一个SqlHelper对象
           $sqlHelper = new SqlHelper();
