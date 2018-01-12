@@ -53,7 +53,7 @@
                     }
                 }
                 //加个sos/给客户端
-                $path = "sos/".$path;
+                $return_path = "sos/".$path;
                 //echo "Upload: " . $_FILES["file"]["name"] . "<br />";
                 //echo "Type: " . $_FILES["file"]["type"] . "<br />";
                 //echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
@@ -63,21 +63,21 @@
                 {
 
                   move_uploaded_file($_FILES["file"]["tmp_name"],$path . $_FILES["file"]["name"]);
-                  $data =  $path.$_FILES["file"]["name"];
+                  $data =  $return_path.$_FILES["file"]["name"];
                   return array('res'=>1, 'data'=>$data,'message'=>'sucess');
                 
                 }
                 else{
                   if (file_exists($path . $_FILES["file"]["name"]))
                   {      
-                    $data = $path.$_FILES["file"]["name"];
+                    $data = $return_path.$_FILES["file"]["name"];
                     return array('res'=>0,'data'=>$data,'message'=>$_FILES["file"]["name"] .' already exists');
                   }
                   else
                   {
                      move_uploaded_file($_FILES["file"]["tmp_name"],$path . $_FILES["file"]["name"]);
                     //echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
-                    $data = $path.$_FILES["file"]["name"];
+                    $data = $return_path.$_FILES["file"]["name"];
                     return array('res'=>1, 'data'=>$data,'message'=>'sucess');
                   }
                 
