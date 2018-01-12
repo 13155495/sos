@@ -11,6 +11,7 @@
 		 $tel 	= getgpc('tel', 'G');
 		 $pwd 	= getgpc('pwd', 'G');
 		 $email = getgpc('email', 'G');
+		 $reg_id = getgpc('reg_id', 'G');
    		//用户名密码为空的验证
 		if ($tel == '' )
 		{
@@ -30,6 +31,7 @@
 			}
 			
 		}
+
 		//strtoupper
 		$login=new Login();
 		
@@ -51,6 +53,17 @@
 					//var_dump($row);return;
 					//对象方式JSON
 					//$row[0][avatar] = UPLOAD_DOMAIN	.$row[0][avatar];
+					if($reg_id != '')
+					{
+
+						if($row[0]['reg_id'] != $reg_id)
+						{
+							//更新记录
+							$login->updateRegid($row[0]['id'],$reg_id);
+						}
+						$row[0]['reg_id']=$reg_id;
+					}
+					
 					die(JSON(array ('res'=>1,'data'=>$row[0])));
 					//数组方式JSON
 					//die(JSON(array ('res'=>1,'data'=>$row))); 

@@ -1,0 +1,26 @@
+<?php
+$target = @$_REQUEST['target'] ? $_REQUEST['target'] : 'all';
+$msg = @$_REQUEST['msg'] ? $_REQUEST['msg'] : '';
+require 'conf.php';
+try {
+    $response = $client->push()
+        ->setPlatform(array('ios'))
+		->addAllAudience($target)
+        ->iosNotification($msg , array(
+             'sound' => 'default',
+             'badge' => '+1',
+             'content-available' => true,
+             'mutable-content' => true,
+        ))
+        ->options(array(
+            'apns_production' => False,
+        ))
+        ->send();
+
+} catch (\JPush\Exceptions\APIConnectionException $e) {
+    print $e;
+} catch (\JPush\Exceptions\APIRequestException $e) {
+    print $e;
+}
+
+print_r($response);

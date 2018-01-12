@@ -54,10 +54,14 @@
      * @param [type] $pwd     [description]
      * @param [type] $country [description]
      * @param [type] $name    [description]
+     * @param [type] $reg_id  [description]
      */
- 		public function addRegister($tel,$email,$pwd,$country,$name){
+ 		public function addRegister($tel,$email,$pwd,$country,$name,$reg_id){
       $create_time = date('Y-m-d H:i:s',time());
- 			$sql = "INSERT INTO user (name,email,tel,pwd,country,create_time) VALUES ('".$name."','".$email."','".$tel."','".$pwd."','".$country."','".$create_time."')";
+
+        $sql = "INSERT INTO user (reg_id,name,email,tel,pwd,country,create_time) VALUES ('".$reg_id."','".$name."','".$email."','".$tel."','".$pwd."','".$country."','".$create_time."')";
+      
+ 			
 
  			$sqlHelper = new SqlHelper();
  			$res = $sqlHelper->execute_dml($sql);

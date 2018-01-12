@@ -12,11 +12,18 @@
 	define("PUBLIC_PATH"		,		dirname(BASE_PATH) . "/public");		//	PUBLIC配置文件路径
 	define("CONF_PATH"			,		dirname(BASE_PATH) . "/config");		//	配置目录
 	define("LOG_PATH"			,		dirname(BASE_PATH) . "/log");			//	log目录
+	define("JPUSH_PATH"			,		dirname(BASE_PATH) . "/jpush");	
+
 	/////////////////////////////引入各种工具/////////////////////////////////////////
 	
 	require PUBLIC_PATH 		.'/function.php';				//	引入函数工具
 	require PUBLIC_PATH 		.'/klogger_util.php';			//	引入LOG工具
 	require PUBLIC_PATH 		.'/sql_helper.class.php';				//	引入sql数据库工具
+	require JPUSH_PATH 			.'/autoload.php';
+	//////////////////////////////极光推送///////////////////////////////////////////
+	define("APP_KEY"			,		'a7a948d64f73bea26d874f70'); 					 
+	define("MASTER_SECRET"		,		'5b7ee05d8b2cf6c5a186e832');
+	
 	///////////////////////////////邮件相关////////////////////////////////////////
 	define("SMTP_DEBUG"			,		0); 					//是否启用smtp的debug进行调试 开发环境建议开启 
 	define("SMTP_AUTH"			,		true);					//smtp需要鉴权 这个必须是true

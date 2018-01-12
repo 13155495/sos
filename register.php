@@ -11,6 +11,7 @@
 	 $pwd 		= getgpc('pwd', 'G');
 	 $country 	= getgpc('country', 'G');
 	 $name 		= getgpc('name', 'G');
+	 $reg_id 	= getgpc('reg_id', 'G');
    	//用户名密码为空的验证
 	if ($tel == ''  )
 	{
@@ -29,6 +30,7 @@
 	}
 	
 	
+	
 	$register=new Register();
 	//检测用户号码是否注册过
 	$res = $register->checkTel($tel);
@@ -44,7 +46,7 @@
 	}
 	
 	//注册新用户		
-	$res = $register->addRegister($tel,$email,$pwd,$country,$name);
+	$res = $register->addRegister($tel,$email,$pwd,$country,$name,$reg_id);
     if($res)
     {
         //合法

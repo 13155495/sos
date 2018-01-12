@@ -47,7 +47,7 @@
        * @param  [type] $status       [description]
        * @return [type]               [description]
        */
-   	public function updateRelashion($email,$friend_email,$status)
+   	  public function updateRelashion($email,$friend_email,$status)
       {
         
          //数据库操作实例化
@@ -74,13 +74,13 @@
    	public function getFriendInfo($email,$status){
          //var_dump($status);
    	   if(empty($status))
-         {
-            $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status=1";
-         }
-         else
-         {
-             $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
-         }
+       {
+          $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status=1";
+       }
+       else
+       {
+           $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
+       }
         
    	   //echo $sql;return;
    		
@@ -141,7 +141,6 @@
          '".$invite_status."','".$create_time."')";
          //
         
-         
 
          $beinvite_sql = "INSERT INTO friend (
          user_id,user_name,user_email,user_tel,
@@ -151,10 +150,12 @@
          '".$user_info['id']."','".$user_info['name']."','".$user_info['email']."','".$user_info['tel']."','".$user_info['avatar']."',
          '".$beinvite_status."','".$create_time."')";
          //echo $beinvite_sql;
-
+         //var_dump($invite_sql);var_dump($beinvite_sql);return;
+         $sqlHelper = new SqlHelper();
+         
          $res1 = $sqlHelper->execute_dml($invite_sql);
          $res2 = $sqlHelper->execute_dml($beinvite_sql);
-
+         //echo $res1;echo $res2;return;
          return $res1."|".$res2;
 
       }

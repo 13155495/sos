@@ -35,6 +35,7 @@
 		$arr1 = $friend->checkRelashion($email,$friend_email);
 		//检测friend_email好友关系是否存在
 		$arr2 = $friend->checkRelashion($friend_email,$email);
+		//var_dump($arr1);var_dump($arr2);return;
 		if(!empty($arr1) &&  !empty($arr2))
 		{
 			//非好友状态才更新
@@ -51,7 +52,7 @@
 			}
 			
 		}
-
+		//var_dump($user_info[0]);var_dump($friend_info[0]);return;
 		//新的好友关系建立
 		$res = $friend->createRelashion($user_info[0],$friend_info[0]);
 		if($res == '1|1')

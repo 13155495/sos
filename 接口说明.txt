@@ -1,6 +1,9 @@
 
 https://github.com/13155495/sos.git 
 1.登陆
+http://lezhongyou.net/sos/login.php?tel=13023444444&pwd=e10adc3949ba59abbe56e057f20f883e&reg_id=1104a89792a3b477ec2
+or
+http://lezhongyou.net/sos/login.php?email=test@163.com&pwd=e10adc3949ba59abbe56e057f20f883e&reg_id=1104a89792a3b477ec2
 说明:	支持电话号码和email登陆
 tel-电话号码
 email-电子邮件
@@ -12,14 +15,16 @@ pwd-密码(md5小写)
 	   用户名或者密码错误-{"res":0,"email or pwd is null"}
 	   					 -{"res":0,"tel or pwd is null"}
 	   成功：
-	   {"res":"1","data":{"id":"1","name":"test","email":"13155495@qq.com","tel":"13023444444","country":"zh","avatar":"sos/upload/avatar/180107/1.jpg"}}
+	   {"res":"1","data":{"id":"1","reg_id":"1104a89792a3b477ec2","name":"test","email":"13155495@qq.com","tel":"13023444444","country":"zh","avatar":"upload/avatar/180107/1.jpg"}}
 
-http://lezhongyou.net/sos/login.php?tel=13023444444&pwd=e10adc3949ba59abbe56e057f20f883e
-or
-http://lezhongyou.net/sos/login.php?email=test@163.com&pwd=e10adc3949ba59abbe56e057f20f883e
+
 
 
 2.注册
+http://lezhongyou.net/sos/register.php?name=12345&tel=13023444444&email=13023444444&country=zh&pwd=e10adc3949ba59abbe56e057f20f883e&reg_id=1104a89792a3b477ec2
+
+reg_id(取得到就填写)
+
 说明:
 name-用户名
 tel-电话号码
@@ -32,7 +37,6 @@ pwd-密码(md5小写)
 {"res":0,"data":"name is exist"}
 {"res":0,"data":"tel is exist"}
 {"res":0,"data":"email is exist"}
-http://lezhongyou.net/sos/register.php?name=12345&tel=13023444444&email=13023444444&country=zh&pwd=e10adc3949ba59abbe56e057f20f883e
 
 3.忘记密码
 email方式获取验证码
@@ -154,6 +158,39 @@ http://lezhongyou.net/sos/friendreject.php?email=1@163.com&friend_email=13155495
 {"res":"1","data":"sucess"}
 失败
 {"res":"0","data":"fail"}
+
+
+12.更新RegistrationId 
+user_id:登陆用户的id
+reg_id: 极光推送的RegistrationId
+http://lezhongyou.net/sos/registrationid.php?user_id=1&reg_id=190e35f7e04061ac8c9
+
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"update fail"}
+
+13.push接口
+点对点推送
+http://lezhongyou.net/sos/friendpush.php?from_id=1&msg=test&to_id=2
+群推送
+http://lezhongyou.net/sos/friendpush.php?from_id=2&msg=test
+
+from_id:登陆用户id
+to_id:指定到发送的用户id(缺少的时候会向from_id的所有用户群发消息)
+msg:消息内容
+
+
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"push fail"}
+
+
+
+
 
 
 
