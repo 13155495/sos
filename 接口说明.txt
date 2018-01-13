@@ -1,4 +1,3 @@
-
 https://github.com/13155495/sos.git 
 1.登陆
 http://lezhongyou.net/sos/login.php?tel=13023444444&pwd=e10adc3949ba59abbe56e057f20f883e&reg_id=1104a89792a3b477ec2
@@ -188,11 +187,13 @@ msg:消息内容
 失败
 {"res":"0","data":"push fail"}
 
+14.建议接口
+id: 当前用户登陆id
+content:建议内容(40个中文字符)
 
-
-
-
-
-
-
-
+http://lezhongyou.net/sos/advise.php?id=2&content=123456789
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"fail"}
