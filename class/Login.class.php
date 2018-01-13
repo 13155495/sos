@@ -1,7 +1,7 @@
 <?php
 		
    
-   require "config/config.php";  
+   require_once "config/config.php";  
    class  Login{
       public function __construct(){
             

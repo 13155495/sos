@@ -1,5 +1,5 @@
 <?php
-   require "config/config.php";
+   require_once "config/config.php";
    
    use JPush\Client as JPush;
    class  Push{

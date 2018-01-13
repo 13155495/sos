@@ -152,7 +152,7 @@ http://lezhongyou.net/sos/friendagree.php?email=1@163.com&friend_email=13155495@
 email       -自己的邮件地址
 friend_email-邀请自己为好友的邮件地址
 下面的URL例子为:1@163.com拒绝13155495@qq.com发出的邀请
-http://lezhongyou.net/sos/friendreject.php?email=1@163.com&friend_email=13155495@qq.com
+http://lezhongyou.net/sos/friendrefuse.php?email=1@163.com&friend_email=13155495@qq.com
 返回值:
 成功
 {"res":"1","data":"sucess"}

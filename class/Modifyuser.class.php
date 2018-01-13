@@ -1,7 +1,7 @@
 <?php
 		
    
-   require "config/config.php";  
+   require_once "config/config.php";  
    class  Modifyuser{
       
    	//提供一个验证用户是否存在的方法

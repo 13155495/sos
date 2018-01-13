@@ -1,7 +1,7 @@
 <?php
 		
    
-   require "config/config.php";  
+   require_once "config/config.php";  
    class  Friend{
 
       public function __construct(){
@@ -33,7 +33,7 @@
        */
       public function checkRelashion($email,$friend_email){
          //2 发起邀请
-         $sql = "SELECT id,status FROM friend WHERE user_email ='$email' AND friend_email='$friend_email'";
+         $sql = "SELECT user_id,friend_id,status FROM friend WHERE user_email ='$email' AND friend_email='$friend_email'";
       
          //创建一个SqlHelper对象
          $sqlHelper = new SqlHelper();
@@ -104,7 +104,7 @@
        */
       public function getUserInfo($email){
          
-         $sql = "SELECT id,name,email,tel,avatar FROM user WHERE email ='$email'";
+         $sql = "SELECT id,reg_id,name,email,tel,avatar FROM user WHERE email ='$email'";
       
          //创建一个SqlHelper对象
          $sqlHelper = new SqlHelper();
