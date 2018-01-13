@@ -56,32 +56,35 @@
 			//状态为被邀请状态才更改为好友
 			if($arr['status'] == 3)
 			{
-				//email ->friend_email 受到邀请-> 拒绝
-				$res1 = $friend->updateRelashion($email,$friend_email,4);
-				//email ->friend_email 发起邀请->被拒绝
-				$res2 = $friend->updateRelashion($friend_email,$email,5);
+				
 
 				//var_dump($res1);var_dump($res2);return;
-				if($res1 && $res2)
+				
+				////////////////////推送拒绝消息//////////////////////
+				//var_dump($friend_info[0]['reg_id']);
+				$res = $push->jgPush($friend_info[0]['reg_id'],$msg);
+				if($res == 1)
 				{
-					////////////////////推送拒绝消息//////////////////////
-					//var_dump($friend_info[0]['reg_id']);
-					$res = $push->jgPush($friend_info[0]['reg_id'],$msg);
-					if($res == 1)
+					//email ->friend_email 受到邀请-> 拒绝
+					$res1 = $friend->updateRelashion($email,$friend_email,4);
+					//email ->friend_email 发起邀请->被拒绝
+					$res2 = $friend->updateRelashion($friend_email,$email,5);
+					if($res1 && $res2)
 					{
 						die(JSON(array ('res'=>1,'data'=>'sucess')));
 					}
 					else
 					{
-						die(JSON(array ('res'=>0,'data'=>'push fail')));
+						die(JSON(array ('res'=>1,'data'=>'refuse fail')));
 					}
-					/////////////////////////////////////////////
-					//die(JSON(array ('res'=>1,'data'=>'sucess')));
 				}
 				else
 				{
-					die(JSON(array ('res'=>1,'data'=>'fail')));
+					die(JSON(array ('res'=>0,'data'=>'push fail')));
 				}
+				/////////////////////////////////////////////
+				//die(JSON(array ('res'=>1,'data'=>'sucess')));
+				
 			}
 			else{
 				die(JSON(array ('res'=>0,'data'=>'invite status error :'.$arr['status'])));

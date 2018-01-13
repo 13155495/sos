@@ -56,18 +56,22 @@
 			//状态为被邀请状态才更改为好友
 			if($arr['status'] == 3)
 			{
-				//接受邀请,两人成为朋友
-				$res1 = $friend->updateRelashion($email,$friend_email,1);
-				$res2 = $friend->updateRelashion($friend_email,$email,1);
-				if($res1 && $res2)
-				{
-					
 					////////////////////推送//////////////////////
 					//var_dump($friend_info[0]['reg_id']);
 					$res = $push->jgPush($friend_info[0]['reg_id'],$msg);
 					if($res == 1)
 					{
-						die(JSON(array ('res'=>1,'data'=>'sucess')));
+						//接受邀请,两人成为朋友
+						$res1 = $friend->updateRelashion($email,$friend_email,1);
+						$res2 = $friend->updateRelashion($friend_email,$email,1);
+						if($res1 && $res2)
+						{
+							die(JSON(array ('res'=>1,'data'=>'sucess')));
+						}
+						else
+						{
+							die(JSON(array ('res'=>1,'data'=>'fail ')));
+						}
 					}
 					else
 					{
@@ -75,11 +79,7 @@
 					}
 					/////////////////////////////////////////////
 					//die(JSON(array ('res'=>1,'data'=>'sucess')));
-				}
-				else
-				{
-					die(JSON(array ('res'=>1,'data'=>'fail ')));
-				}
+				
 			}
 			else{
 				die(JSON(array ('res'=>0,'data'=>'invite status error :'.$arr['status'])));

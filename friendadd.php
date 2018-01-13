@@ -58,57 +58,62 @@
 			if($arr1['status'] != 1 && $arr2['status'] != 1)
 			{
 				
-				//更新状态email 向 friend_email 发起邀请 2
-				$res1 = $friend->updateRelashion($email,$friend_email,2);
-				$res2 = $friend->updateRelashion($friend_email,$email,3);
+				
 				////////////////////推送//////////////////////
 				//var_dump($friend_info[0]['reg_id']);
 				$res = $push->jgPush($friend_info[0]['reg_id'],$msg);
 				if($res == 1)
 				{
+					//更新状态email 向 friend_email 发起邀请 2
+					$res1 = $friend->updateRelashion($email,$friend_email,2);
+					$res2 = $friend->updateRelashion($friend_email,$email,3);
 					die(JSON(array ('res'=>1,'data'=>'sucess')));
 				}
 				else
 				{
-					die(JSON(array ('res'=>0,'data'=>'fail')));
+					die(JSON(array ('res'=>0,'data'=>'push fail')));
 				}
 				/////////////////////////////////////////////
 				//die(JSON(array ('res'=>1,'data'=>'sucess')));
 
 			}
 			else{
-				die(JSON(array ('res'=>0,'data'=>'already  friend')));
+				die(JSON(array ('res'=>0,'data'=>'already friend')));
 			}
 			
 		}
 		//var_dump($user_info[0]);var_dump($friend_info[0]);return;
-		//新的好友关系建立
-		$res = $friend->createRelashion($user_info[0],$friend_info[0]);
-		if($res == '1|1')
+		
+		
+		////////////////////推送//////////////////////
+		//var_dump($friend_info[0]['reg_id']);
+		$res = $push->jgPush($friend_info[0]['reg_id'],$msg);
+		if($res == 1)
 		{
-			////////////////////推送//////////////////////
-			//var_dump($friend_info[0]['reg_id']);
-			$res = $push->jgPush($friend_info[0]['reg_id'],$msg);
-			if($res == 1)
+			//新的好友关系建立
+			$res = $friend->createRelashion($user_info[0],$friend_info[0]);
+			if($res == '1|1')
 			{
 				die(JSON(array ('res'=>1,'data'=>'sucess')));
 			}
-			else
-			{
-				die(JSON(array ('res'=>0,'data'=>'fail')));
+			else{
+				$res_arr = explode('|',$res); 
+				if($res_arr[0] == '0'){
+					die(JSON(array ('res'=>0,'data'=>'invite fail')));
+				}
+				if($res_arr[1] == '0'){
+					die(JSON(array ('res'=>0,'data'=>'be invite fail')));
+				}
 			}
-			////////////////////////////////////////////////
-			//die(JSON(array ('res'=>1,'data'=>'sucess')));
+			
 		}
-		else{
-			$res_arr = explode('|',$res); 
-			if($res_arr[0] == '0'){
-				die(JSON(array ('res'=>0,'data'=>'invite fail')));
-			}
-			if($res_arr[1] == '0'){
-				die(JSON(array ('res'=>0,'data'=>'be invite fail')));
-			}
+		else
+		{
+			die(JSON(array ('res'=>0,'data'=>'push fail')));
 		}
+		////////////////////////////////////////////////
+		//die(JSON(array ('res'=>1,'data'=>'sucess')));
+		
 			 	
 	
 ?>
