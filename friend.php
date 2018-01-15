@@ -10,9 +10,9 @@
 	
 		 
 		 $status 	= getgpc('status', 'G');
-		 $email 	= getgpc('email', 'G');
+		 $id 	= getgpc('id', 'G');
    		//用户名密码为空的验证
-		if ($email == '' )
+		if ($id == '' )
 		{
 		
    				die( JSON(array('res' =>0, 'data' => 'required parameter missing')));	
@@ -21,7 +21,7 @@
 		//strtoupper
 		$friend=new Friend();
 		//先查用户该是否存在
-		$res = $friend->check($email);
+		$res = $friend->checkByid($id);
 		
 		if($res==0)
 		{
@@ -29,7 +29,7 @@
 		}
 		else
 		{
-			$row = $friend->getFriendInfo($email,$status);
+			$row = $friend->getFriendInfo($id,$status);
 			die(JSON(array ('res'=>1,'data'=>$row)));
 			/*
 			if (empty($row))

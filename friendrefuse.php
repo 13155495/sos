@@ -75,7 +75,7 @@
 					}
 					else
 					{
-						die(JSON(array ('res'=>1,'data'=>'refuse fail')));
+						die(JSON(array ('res'=>0,'data'=>'refuse fail')));
 					}
 				}
 				else

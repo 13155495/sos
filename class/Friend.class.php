@@ -25,6 +25,29 @@
          }
 
    	}
+
+    /**
+     * [checkByid 通过id来检测用户]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function checkByid($id){
+      
+      $sql = "SELECT id FROM user WHERE id ='$id'";
+    
+      //创建一个SqlHelper对象
+      $sqlHelper = new SqlHelper();
+      $arr = $sqlHelper->execute_dql($sql);
+         if(!empty($arr))
+         {
+            return 1;
+         }
+         else
+         {
+            return 0;
+         }
+
+    }
       /**
        * [checkRelashion 检测好友记录是否存在]
        * @param  [type] $email        [description]
@@ -71,15 +94,15 @@
        * @param  [type] $status [description]
        * @return [type]         [description]
        */
-   	public function getFriendInfo($email,$status){
+   	public function getFriendInfo($id,$status){
          //var_dump($status);
    	   if(empty($status))
        {
-          $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status=1";
+          $sql = "SELECT user.id,user.name,user.email,user.tel,user.avatar FROM friend,user WHERE  user.id=friend.friend_id AND STATUS=1 AND   friend.user_id='$id'";
        }
        else
        {
-           $sql = "SELECT friend_id,friend_name,friend_email,friend_tel,friend_avatar FROM friend WHERE user_email='$email' AND status='$status'";
+           $sql = "SELECT user.id,user.name,user.email,user.tel,user.avatar FROM friend,user WHERE  user.id=friend.friend_id AND STATUS='$status' AND   friend.user_id='$id' ";
        }
         
    	   //echo $sql;return;

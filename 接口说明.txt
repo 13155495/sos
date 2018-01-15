@@ -102,19 +102,19 @@ POST方式上传
 8.获取好友列表
 参数
 email:	用户的邮箱地址
-status:	好友状态(1:好友 2:发起邀请 3:受到邀请 4.拒绝 5.被拒绝)
+status:	好友状态(1:好友 2:发起邀请 3:受到邀请 4.发起拒绝 5.被拒绝 6.发起删除 7.被删除)
 
 
 根据状态查询好友信息
-http://lezhongyou.net/sos/friend.php?email=1@163.com
+http://lezhongyou.net/sos/friend.php?id=2
 or
-http://lezhongyou.net/sos/friend.php?email=1@163.com&status=1
+http://lezhongyou.net/sos/friend.php?id=2&status=1
 
 
 返回值:
 成功
 {"res":"1","data":[]}
-{"res":"1","data":[{"friend_id":"2","friend_name":"12345","friend_email":"1@163.com","friend_tel":"13023444442","friend_avatar":"upload/avatar/180107/1.jpg"}]}
+{"res":"1","data":[{"id":"1","name":"test","email":"13155495@qq.com","tel":"13023444444","avatar":"upload/avatar/180107/1.jpg"},{"id":"3","name":"12","email":"2@163.com","tel":"13023444445","avatar":"upload/avatar/180107/3.jpg"}]}
 "data":[] 表示没有好友
 
 失败：
@@ -192,6 +192,19 @@ id: 当前用户登陆id
 content:建议内容(40个中文字符)
 
 http://lezhongyou.net/sos/advise.php?id=2&content=123456789
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"fail"}
+
+15.删除好友接口
+email       -自己的邮件地址
+friend_email-邀请自己为好友的邮件地址
+http://lezhongyou.net/sos/frienddelete.php?email=1@163.com&friend_email=13155495@qq.com
+1@163.com发起删除好友13155495@qq.com
+
+
 返回值:
 成功
 {"res":"1","data":"sucess"}
