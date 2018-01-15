@@ -17,7 +17,10 @@
 		
    			die( JSON(array('res' =>0, 'data' => 'required parameter missing')));	
 		}
-		
+		if($email == $friend_email)
+		{
+			die( JSON(array('res' =>0, 'data' => 'can not add youself')));	
+		}
 		
 		$friend = 	new Friend();
 		
@@ -37,6 +40,7 @@
 		{
 			die(JSON(array ('res'=>0,'data'=>'friend info is not exists')));
 		}
+
 		$push   =	new Push();
 		$time 	=   date('Y-m-d H:i:s',time());
 		//推送的信息json --{"msgtype":"receiveadd","fromuid":"2","touid":"1","content":"你有一个好友添加请求","time":12323232323,"lat":"","lng":"","address":"","type":"","isReaded":""} 
