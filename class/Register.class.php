@@ -47,6 +47,24 @@
       
     }
 
+    public function checkId3($id3){
+     
+      $sql = "SELECT email,pwd FROM user WHERE id3 ='$id3'";;
+      //创建一个SqlHelper对象
+      $sqlHelper = new SqlHelper();
+      $arr = $sqlHelper->execute_dql($sql);
+
+      if(!empty($arr))
+      {
+        return 1;
+      }
+      else
+      {
+        return 0;
+      }
+      
+    }
+
  		/**
      * [addRegister 注册新用户]
      * @param [type] $tel     [description]
@@ -71,7 +89,31 @@
  				return false;
  			}
  		}
-   		
+    /**
+     * [addRegisterId3 第三方注册新用户]
+     * @param [type] $tel     [description]
+     * @param [type] $email   [description]
+     * @param [type] $pwd     [description]
+     * @param [type] $country [description]
+     * @param [type] $name    [description]
+     * @param [type] $reg_id  [description]
+     * @param [type] $id3     [description]
+     */
+   	public function addRegisterId3($tel,$email,$pwd,$country,$name,$reg_id,$id3){
+      $create_time = date('Y-m-d H:i:s',time());
+
+        $sql = "INSERT INTO user (reg_id,id3,name,email,tel,pwd,country,create_time) VALUES ('".$reg_id."','".$id3."','".$name."','".$email."','".$tel."','".$pwd."','".$country."','".$create_time."')";
+      
+      
+
+      $sqlHelper = new SqlHelper();
+      $res = $sqlHelper->execute_dml($sql);
+      if($res == 1){
+        return true;
+      }else{
+        return false;
+      }
+    }
    	
    }
    

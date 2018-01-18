@@ -29,7 +29,28 @@
          }
 
    	}
-   		
+   	/**
+       * [checkLoginId3 第三方登陆检测]
+       * @param  [type] $id3 [description]
+       * @return [type]      [description]
+       */
+      public function checkLoginId3($id3){
+         
+         $sql = "SELECT email,pwd FROM user WHERE id3 ='$id3'";
+         
+         //创建一个SqlHelper对象
+         $sqlHelper = new SqlHelper();
+         $arr = $sqlHelper->execute_dql($sql);
+         if(!empty($arr))
+         {
+            return 1;
+         }
+         else
+         {
+            return 0;
+         }
+
+      }
    		
    	/**
    	 * [getUserInfo 获取用户信息]
@@ -57,7 +78,25 @@
    	      return $arr;
 
    	}
+      /**
+       * [getUserInfoByid3 通过第三方id获取用户信息]
+       * @param  [type] $id3 [description]
+       * @return [type]      [description]
+       */
+      public function getUserInfoByid3($id3){
+         
+            $sql = "SELECT id,reg_id,name,email,tel,country,avatar FROM user WHERE id3='$id3'"; 
+         
+            $sqlHelper = new SqlHelper();
+            $arr = $sqlHelper->execute_dql($sql);
+            //资源关闭
+            mysql_free_result($arr);
+            //关闭连接
+            $sqlHelper->close_connect();
+            return $arr;
 
+      }
+      
       public function checkUserInfoByid($id)
       {
          

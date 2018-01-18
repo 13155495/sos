@@ -20,10 +20,10 @@ pwd-密码(md5小写)
 
 
 2.注册
-http://lezhongyou.net/sos/register.php?name=12345&tel=13023444444&email=13023444444&country=zh&pwd=e10adc3949ba59abbe56e057f20f883e&reg_id=1104a89792a3b477ec2
+http://lezhongyou.net/sos/register.php?name=12345&tel=13023444444&email=13023444444&country=zh&pwd=e10adc3949ba59abbe56e057f20f883e&reg_id=1104a89792a3b477ec2&id3=123456
 
 reg_id(取得到就填写)
-
+id3 (第三方登陆id)
 说明:
 name-用户名
 tel-电话号码
@@ -210,3 +210,17 @@ http://lezhongyou.net/sos/frienddelete.php?email=1@163.com&friend_email=13155495
 {"res":"1","data":"sucess"}
 失败
 {"res":"0","data":"fail"}
+
+16.第三方登陆接口
+http://lezhongyou.net/sos/login3rd.php?id3=123456
+id3-第三方登陆返回的id
+返回值:
+成功
+{"res":"1","data":"sucess"}
+失败
+{"res":"0","data":"id3 is null"} -需要客户端走登陆流程
+{"res":"0","data":"user info is null"} -无法通过id3查询到用户信息
+{"res":"0","data":"required parameter missing id3"}  -输入参数id3没有找到
+
+
+
