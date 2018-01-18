@@ -126,6 +126,10 @@ http://lezhongyou.net/sos/friend.php?id=2&status=1
 
 9.添加好友
 http://lezhongyou.net/sos/friendadd.php?email=13155495@qq.com&friend_email=1@163.com
+or
+http://lezhongyou.net/sos/friendadd.php?tel=13023444444&friend_tel=13023444442
+tel          -自己的电话号码
+friend_tel   -添加好友的电话号码
 email        -自己的邮件地址
 friend_email -添加好友的邮件地址
 
