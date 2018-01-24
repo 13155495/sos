@@ -9,7 +9,7 @@
 	
 	
 		 $avatar		= getgpc('avatar', 'G');
-		 $id 		= getgpc('id', 'G');
+		 $id 			= getgpc('id', 'G');
 
    		//参数检测
 		if($avatar == '' ||  $id =='')

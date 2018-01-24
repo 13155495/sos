@@ -89,7 +89,30 @@
                     //->addAllAudience($target)
                     //->setAudience($target)
                     ->addRegistrationId($registration_id)
-                    ->setNotificationAlert($msg)
+                    /*
+                    ->androidNotification('测试' , array(
+                       'sound' => 'default',
+                       'badge' => '+1',
+                       'content-available' => true,
+                        //'mutable-content' => true,
+                        'extras' => array(
+                        'result' => $msg,
+                        ),
+                    ))
+                    ->iosNotification('测试' , array(
+                       'sound' => 'default',
+                       'badge' => '+1',
+                       'content-available' => true,
+                        //     'mutable-content' => true,
+                        'extras' => array(
+                        'result' => $msg,
+                        ),
+                          ))
+                        ->options(array(
+                                'apns_production' => true,
+                        ))
+                    */
+                    ->setMessage($msg/*, 'msg title', 'type'*/)//自定义消息
                     ->send();
                 $this->logObj->logDebug("push sucess", $response);
                 //var_dump(json_encode($response)) ;
